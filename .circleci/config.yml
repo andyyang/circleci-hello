@@ -8,6 +8,7 @@ common:
     working_directory: /go/src/github.com/Static-Void-Academy/circleci-hello
   - &get_deps
     run: go get -d ./...
+
 version: 2
 jobs:
   build:
@@ -25,7 +26,8 @@ jobs:
           paths: ./*
       - store_artifacts:
           path: ./circleci-hello
-test:
+
+  test:
     <<: *container_config # See common
     steps:
       - attach_workspace:
@@ -33,6 +35,7 @@ test:
       - checkout
       - *get_deps         # See common
       - run: go test
+
 workflows:
   version: 2
   build_test:
